@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h1>Admin Dashboard</h1>
+
+
+<a href="{{ url_for('logout') }}" class="btn">
+    Logout
+</a>
+
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+    </tr>
+
+    {% for message in messages %}
+
+    <tr>
+
+        <td>{{ message.id }}</td>
+
+        <td>{{ message.name }}</td>
+
+        <td>{{ message.email }}</td>
+
+        <td>{{ message.message }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
+
+
