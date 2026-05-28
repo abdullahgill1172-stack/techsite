@@ -20,25 +20,20 @@
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav class="navbar" id="navbar">
-    <div class="nav-container">
-        <a href="{{ url_for('index') }}" class="nav-logo">
+<!-- Loading Screen -->
+<div class="loader" id="loader">
+    <div class="loader-content">
+        <div class="loader-logo">
             <span class="logo-bracket">[</span>HECG<span class="logo-accent">.</span><span class="logo-bracket">]</span>
-        </a>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
-            <li><a href="{{ url_for('services') }}" class="nav-link {% if request.endpoint == 'services' %}active{% endif %}">Services</a></li>
-            <li><a href="{{ url_for('portfolio') }}" class="nav-link {% if request.endpoint == 'portfolio' %}active{% endif %}">Portfolio</a></li>
-            <li><a href="{{ url_for('contact') }}" class="nav-cta {% if request.endpoint == 'contact' %}active{% endif %}">Contact Us</a></li>
-        </ul>
-
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
+        </div>
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
     </div>
-</nav>
+</div>
+
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- ── FLASH MESSAGES ── -->
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -130,5 +125,24 @@
 </script>
 
 {% block scripts %}{% endblock %}
+
+
+<!-- Page Load Animation -->
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('loader').classList.add('hidden');
+        }, 1500);
+    });
+
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+</script>
+
 </body>
 </html>

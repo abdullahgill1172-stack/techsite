@@ -1160,3 +1160,168 @@ button { cursor: pointer; font-family: inherit; }
     .hero-actions { flex-direction: column; }
     .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
 }
+
+/* ═══ LOADING SCREEN ════════════════════════════════ */
+.loader {
+    position: fixed;
+    inset: 0;
+    background: #080b12;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.loader-content {
+    text-align: center;
+}
+.loader-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    animation: pulse 1.5s infinite;
+}
+.loader-bar {
+    width: 200px;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.loader-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    width: 0%;
+    animation: load 1.5s ease-out forwards;
+    border-radius: 10px;
+}
+@keyframes load {
+    to { width: 100%; }
+}
+
+/* ═══ SCROLL PROGRESS ════════════════════════════════ */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    width: 0%;
+    z-index: 10001;
+    transition: width 0.1s;
+}
+
+/* ═══ GLASSMORPHISM CARDS ════════════════════════ */
+.glass-card {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+}
+
+/* ═══ BETTER BUTTON HOVER ════════════════════════ */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+}
+.btn-primary:hover::before {
+    transform: translateX(100%);
+}
+
+/* ═══ CURSOR EFFECT ════════════════════════════════ */
+body {
+    cursor: default;
+}
+a, button, input, textarea, select {
+    cursor: pointer;
+}
+a:hover, .btn-primary:hover {
+    cursor: pointer;
+}
+
+/* ═══ SKELETON LOADING ════════════════════════════════ */
+.skeleton {
+    background: linear-gradient(90deg, #1a2233 25%, #223 50%, #1a2233 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+
+/* ═══ TESTIMONIALS ════════════════════════════════ */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.testimonial-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: all 0.3s;
+}
+.testimonial-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-4px);
+}
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    background: rgba(59,130,246,0.15);
+    color: var(--accent2);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.testimonial-header h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+.testimonial-header span {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.testimonial-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+.testimonial-stars {
+    color: #fbbf24;
+    font-size: 18px;
+    letter-spacing: 4px;
+}
+
+@media (max-width: 768px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+}
+
