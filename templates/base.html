@@ -35,6 +35,35 @@
 <!-- Scroll Progress Bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
+<!-- Particle Background Canvas -->
+<canvas id="particles"></canvas>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="{{ url_for('index') }}" class="nav-logo">
+            <span class="logo-bracket">[</span>HECG<span class="logo-accent">.</span><span class="logo-bracket">]</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+            <li><a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a></li>
+            <li><a href="{{ url_for('services') }}" class="nav-link {% if request.endpoint == 'services' %}active{% endif %}">Services</a></li>
+            <li><a href="{{ url_for('portfolio') }}" class="nav-link {% if request.endpoint == 'portfolio' %}active{% endif %}">Portfolio</a></li>
+            <li><a href="{{ url_for('contact') }}" class="nav-cta {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
+            <li class="nav-search-item">
+                <button class="search-btn" id="searchBtn">
+                    <i class="ti ti-search"></i>
+                </button>
+            </li>
+        </ul>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
 <!-- ── FLASH MESSAGES ── -->
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
@@ -48,6 +77,62 @@
     </div>
   {% endif %}
 {% endwith %}
+
+<!-- Search Modal -->
+<div class="search-modal" id="searchModal">
+    <div class="search-container">
+        <div class="search-header">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search services, pages..." autocomplete="off">
+            <button class="search-close" id="searchClose">
+                <i class="ti ti-x"></i>
+            </button>
+        </div>
+        <div class="search-results" id="searchResults">
+            <div class="search-category">
+                <h4>Pages</h4>
+                <a href="{{ url_for('index') }}" class="search-result">
+                    <i class="ti ti-home"></i>
+                    <div><strong>Home</strong><span>Main landing page</span></div>
+                </a>
+                <a href="{{ url_for('about') }}" class="search-result">
+                    <i class="ti ti-user"></i>
+                    <div><strong>About</strong><span>Learn about us</span></div>
+                </a>
+                <a href="{{ url_for('services') }}" class="search-result">
+                    <i class="ti ti-code"></i>
+                    <div><strong>Services</strong><span>What we offer</span></div>
+                </a>
+                <a href="{{ url_for('portfolio') }}" class="search-result">
+                    <i class="ti ti-layout-grid"></i>
+                    <div><strong>Portfolio</strong><span>Our work</span></div>
+                </a>
+                <a href="{{ url_for('contact') }}" class="search-result">
+                    <i class="ti ti-mail"></i>
+                    <div><strong>Contact</strong><span>Get in touch</span></div>
+                </a>
+            </div>
+            <div class="search-category">
+                <h4>Services</h4>
+                <a href="{{ url_for('services') }}" class="search-result">
+                    <i class="ti ti-code"></i>
+                    <div><strong>Web Development</strong><span>Custom websites & apps</span></div>
+                </a>
+                <a href="{{ url_for('services') }}" class="search-result">
+                    <i class="ti ti-shield-lock"></i>
+                    <div><strong>Cybersecurity</strong><span>Security & testing</span></div>
+                </a>
+                <a href="{{ url_for('services') }}" class="search-result">
+                    <i class="ti ti-cloud"></i>
+                    <div><strong>Cloud & DevOps</strong><span>Cloud infrastructure</span></div>
+                </a>
+                <a href="{{ url_for('services') }}" class="search-result">
+                    <i class="ti ti-robot"></i>
+                    <div><strong>AI & Automation</strong><span>Smart automation</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- ── CONTENT ── -->
 {% block content %}{% endblock %}
@@ -122,10 +207,43 @@
         navLinks.classList.toggle('open');
         hamburger.classList.toggle('active');
     });
+
+    // Search Modal
+    const searchBtn = document.getElementById('searchBtn');
+    const searchModal = document.getElementById('searchModal');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+
+    if (searchBtn && searchModal) {
+        searchBtn.addEventListener('click', () => {
+            searchModal.classList.add('active');
+            searchInput.focus();
+        });
+
+        searchClose.addEventListener('click', () => {
+            searchModal.classList.remove('active');
+        });
+
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) {
+                searchModal.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                searchModal.classList.remove('active');
+            }
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                searchModal.classList.add('active');
+                searchInput.focus();
+            }
+        });
+    }
 </script>
 
 {% block scripts %}{% endblock %}
-
 
 <!-- Page Load Animation -->
 <script>
@@ -142,6 +260,104 @@
         const scrolled = (winScroll / height) * 100;
         document.getElementById('scrollProgress').style.width = scrolled + '%';
     });
+</script>
+
+<!-- Particle Animation -->
+<script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    const particleCount = 80;
+    const connectionDistance = 120;
+    const mouseDistance = 200;
+
+    let mouse = { x: null, y: null };
+
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+    });
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
+    });
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2 + 1;
+            this.color = `rgba(59, 130, 246, ${Math.random() * 0.5 + 0.2})`;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+            if (mouse.x != null) {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouseDistance) {
+                    const force = (mouseDistance - distance) / mouseDistance;
+                    this.x -= (dx / distance) * force * 2;
+                    this.y -= (dy / distance) * force * 2;
+                }
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            for (let j = i + 1; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x;
+                let dy = particles[i].y - particles[j].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < connectionDistance) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(59, 130,246, ${0.15 * (1 - distance / connectionDistance)})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
 </script>
 
 </body>
