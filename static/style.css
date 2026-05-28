@@ -174,7 +174,27 @@ th{
     padding:0 20px 20px;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px)
+
+
+
+
+.hero h1{
+
+    font-size:45px;
+}
+
+.hero p{
+
+    font-size:18px;
+}
+
+
+
+
+
+
+{
 
     nav ul{
 
@@ -270,3 +290,92 @@ th{
 }
 
 
+.hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0f172a,
+    #1e293b,
+    #2563eb
+    );
+
+    color:white;
+
+    padding:40px;
+}
+
+.hero-content{
+
+    max-width:800px;
+}
+
+.hero h1{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+    line-height:1.1;
+}
+
+.hero p{
+
+    font-size:22px;
+
+    margin-bottom:35px;
+
+    opacity:0.9;
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+
+    padding:15px 30px;
+
+    background:white;
+
+    color:black;
+
+    text-decoration:none;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+}
+
+.secondary-btn{
+
+    background:transparent;
+
+    border:2px solid white;
+
+    color:white;
+}

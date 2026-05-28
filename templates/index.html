@@ -4,21 +4,44 @@
 Home
 {% endblock %}
 
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
 {% block content %}
 
 <section class="hero">
 
-    <h1>Modern Python & Web Solutions</h1>
+    <div class="hero-content">
 
-    <p>
-        We build websites, automation tools,
-        APIs, and business software.
-    </p>
+        <h1>
+            We Build Modern Tech Solutions
+        </h1>
 
-    <a href="{{ url_for('contact') }}" class="btn">
-        Contact Us
-    </a>
+        <p>
+            Websites, automation systems,
+            dashboards and scalable software.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('services') }}"
+               class="btn">
+               Our Services
+            </a>
+
+            <a href="{{ url_for('contact') }}"
+               class="btn secondary-btn">
+               Contact Us
+            </a>
+
+        </div>
+
+    </div>
 
 </section>
 
+{% endblock %}
 {% endblock %}
