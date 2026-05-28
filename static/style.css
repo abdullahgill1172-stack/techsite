@@ -208,3 +208,65 @@ th{
         padding:10px;
     }
 }
+
+.dark-mode{
+
+    background:#111;
+
+    color:white;
+}
+
+.dark-mode nav{
+
+    background:#222;
+}
+
+.dark-mode .service-card,
+.dark-mode .portfolio-card,
+.dark-mode table{
+
+    background:#1e1e1e;
+
+    color:white;
+}
+
+.dark-mode th{
+
+    background:#333;
+}
+
+.dark-mode input,
+.dark-mode textarea{
+
+    background:#222;
+
+    color:white;
+
+    border:1px solid #555;
+}
+
+.dark-mode a{
+
+    color:#00bfff;
+}
+
+
+
+
+
+#darkModeToggle{
+
+    padding:10px 15px;
+
+    border:none;
+
+    background:black;
+
+    color:white;
+
+    border-radius:5px;
+
+    cursor:pointer;
+}
+
+

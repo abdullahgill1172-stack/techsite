@@ -43,12 +43,29 @@ href="{{ url_for('static', filename='style.css') }}">
 
     </nav>
 
+
+    <button id="darkModeToggle">
+    🌙 Dark Mode
+</button>
     <div class="container">
 
         {% block content %}
         {% endblock %}
 
     </div>
+
+
+<script>
+
+const button =
+document.getElementById("darkModeToggle");
+
+button.onclick = function(){
+
+    document.body.classList.toggle("dark-mode");
+};
+
+</script>
 
 </body>
 </html>
