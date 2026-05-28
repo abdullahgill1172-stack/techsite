@@ -173,3 +173,38 @@ th{
 
     padding:0 20px 20px;
 }
+
+@media (max-width: 768px){
+
+    nav ul{
+
+        flex-direction:column;
+
+        gap:15px;
+    }
+
+    .hero h1{
+
+        font-size:40px;
+    }
+
+    .services-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .portfolio-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .contact-form{
+
+        width:100%;
+    }
+
+    body{
+
+        padding:10px;
+    }
+}
