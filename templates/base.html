@@ -51,11 +51,6 @@
             <li><a href="{{ url_for('services') }}" class="nav-link {% if request.endpoint == 'services' %}active{% endif %}">Services</a></li>
             <li><a href="{{ url_for('portfolio') }}" class="nav-link {% if request.endpoint == 'portfolio' %}active{% endif %}">Portfolio</a></li>
             <li><a href="{{ url_for('contact') }}" class="nav-cta {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
-            <li class="nav-search-item">
-                <button class="search-btn" id="searchBtn">
-                    <i class="ti ti-search"></i>
-                </button>
-            </li>
         </ul>
 
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -200,12 +195,32 @@
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Mobile hamburger
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-        hamburger.classList.toggle('active');
+  // Mobile hamburger with overlay
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+// Create overlay
+const overlay = document.createElement('div');
+overlay.className = 'nav-overlay';
+document.body.appendChild(overlay);
+
+function toggleMenu() {
+    navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', toggleMenu);
+
+// Close on link click
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
     });
 
     // Search Modal
@@ -362,3 +377,5 @@
 
 </body>
 </html>
+
+
