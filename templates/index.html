@@ -1,47 +1,215 @@
 {% extends "base.html" %}
 
-{% block title %}
-Home
-{% endblock %}
-
-{% extends "base.html" %}
-
-{% block title %}
-Home
-{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
 
+<!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
 <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
 
-    <div class="hero-content">
-
-        <h1>
-            We Build Modern Tech Solutions
-        </h1>
-
-        <p>
-            Websites, automation systems,
-            dashboards and scalable software.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="{{ url_for('services') }}"
-               class="btn">
-               Our Services
-            </a>
-
-            <a href="{{ url_for('contact') }}"
-               class="btn secondary-btn">
-               Contact Us
-            </a>
-
+    <div class="hero-inner">
+        <div class="hero-text" data-aos="fade-right">
+            <div class="hero-tag">
+                <span class="tag-dot"></span>
+                Available for new projects
+            </div>
+            <h1 class="hero-heading">
+                We Build<br>
+                <span class="heading-gradient">Future-Ready</span><br>
+                Tech Solutions
+            </h1>
+            <p class="hero-sub">
+                HECG Master Experts delivers enterprise-grade websites,
+                cybersecurity systems, cloud infrastructure, and intelligent
+                automation for businesses that demand excellence.
+            </p>
+            <div class="hero-actions">
+                <a href="{{ url_for('contact') }}" class="btn-primary">
+                    Start a Project <i class="ti ti-arrow-right"></i>
+                </a>
+                <a href="{{ url_for('portfolio') }}" class="btn-ghost">
+                    View Our Work
+                </a>
+            </div>
         </div>
 
+        <div class="hero-visual" data-aos="fade-left" data-aos-delay="150">
+            <div class="terminal-card">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-title">hecg_system.py</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="t-line"><span class="t-comment"># HECG Master Experts</span></div>
+                    <div class="t-line"><span class="t-keyword">class</span> <span class="t-class">HECGSolution</span>:</div>
+                    <div class="t-line indent"><span class="t-keyword">def</span> <span class="t-fn">deliver</span>(self):</div>
+                    <div class="t-line indent2"><span class="t-var">services</span> = [</div>
+                    <div class="t-line indent3"><span class="t-str">"Web Development"</span>,</div>
+                    <div class="t-line indent3"><span class="t-str">"Cybersecurity"</span>,</div>
+                    <div class="t-line indent3"><span class="t-str">"Cloud & DevOps"</span>,</div>
+                    <div class="t-line indent3"><span class="t-str">"AI Automation"</span>,</div>
+                    <div class="t-line indent2">]</div>
+                    <div class="t-line indent2"><span class="t-keyword">return</span> <span class="t-fn">build_excellence</span>(<span class="t-var">services</span>)</div>
+                    <div class="t-line">&nbsp;</div>
+                    <div class="t-line"><span class="t-comment"># Status: ● ONLINE — Ready to build</span></div>
+                    <div class="cursor-line"><span class="cursor">▋</span></div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="hero-stats" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-item">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <span class="stat-num">98%</span>
+            <span class="stat-label">Client Satisfaction</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <span class="stat-num">5+</span>
+            <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">Support Available</span>
+        </div>
+    </div>
 </section>
 
-{% endblock %}
+<!-- ══ SERVICES PREVIEW ════════════════════════════════════════════════════ -->
+<section class="section services-preview">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">What We Do</span>
+            <h2>Expert Services for<br>Modern Businesses</h2>
+            <p>From concept to deployment — we handle every layer of your technology stack.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="service-icon"><i class="ti ti-code"></i></div>
+                <h3>Web Development</h3>
+                <p>Full-stack web applications built with modern frameworks, responsive design, and production-grade performance.</p>
+                <a href="{{ url_for('services') }}" class="card-link">Learn more <i class="ti ti-arrow-right"></i></a>
+            </div>
+
+            <div class="service-card featured" data-aos="fade-up" data-aos-delay="100">
+                <div class="featured-badge">Most Popular</div>
+                <div class="service-icon"><i class="ti ti-shield-lock"></i></div>
+                <h3>Cybersecurity</h3>
+                <p>Penetration testing, vulnerability assessment, and security hardening to protect your digital assets.</p>
+                <a href="{{ url_for('services') }}" class="card-link">Learn more <i class="ti ti-arrow-right"></i></a>
+            </div>
+
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon"><i class="ti ti-cloud"></i></div>
+                <h3>Cloud & DevOps</h3>
+                <p>Scalable cloud infrastructure, CI/CD pipelines, containerization, and automated deployment workflows.</p>
+                <a href="{{ url_for('services') }}" class="card-link">Learn more <i class="ti ti-arrow-right"></i></a>
+            </div>
+
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon"><i class="ti ti-robot"></i></div>
+                <h3>AI & Automation</h3>
+                <p>Intelligent automation systems, data pipelines, and AI integrations that eliminate manual work at scale.</p>
+                <a href="{{ url_for('services') }}" class="card-link">Learn more <i class="ti ti-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="section-cta" data-aos="fade-up">
+            <a href="{{ url_for('services') }}" class="btn-primary">View All Services <i class="ti ti-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- ══ WHY US ════════════════════════════════════════════════════════════ -->
+<section class="section why-us">
+    <div class="container">
+        <div class="why-grid">
+            <div class="why-text" data-aos="fade-right">
+                <span class="section-tag">Why HECG</span>
+                <h2>Built Different.<br>Delivered Better.</h2>
+                <p>We're not just another IT company. We are specialists who combine deep technical expertise with a relentless commitment to quality and deadlines.</p>
+
+                <ul class="why-list">
+                    <li data-aos="fade-right" data-aos-delay="100">
+                        <div class="why-icon"><i class="ti ti-trophy"></i></div>
+                        <div>
+                            <strong>Senior-Level Talent</strong>
+                            <span>Every project led by experts with 5+ years experience</span>
+                        </div>
+                    </li>
+                    <li data-aos="fade-right" data-aos-delay="200">
+                        <div class="why-icon"><i class="ti ti-clock"></i></div>
+                        <div>
+                            <strong>On-Time Delivery</strong>
+                            <span>We respect your deadlines — always</span>
+                        </div>
+                    </li>
+                    <li data-aos="fade-right" data-aos-delay="300">
+                        <div class="why-icon"><i class="ti ti-headset"></i></div>
+                        <div>
+                            <strong>Post-Launch Support</strong>
+                            <span>We stay with you long after launch day</span>
+                        </div>
+                    </li>
+                    <li data-aos="fade-right" data-aos-delay="400">
+                        <div class="why-icon"><i class="ti ti-lock"></i></div>
+                        <div>
+                            <strong>Security-First Approach</strong>
+                            <span>Security baked in from day one, not added later</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="why-visual" data-aos="fade-left">
+                <div class="tech-stack-box">
+                    <h4>Our Tech Stack</h4>
+                    <div class="tech-pills">
+                        <span class="pill">Python</span>
+                        <span class="pill">Flask</span>
+                        <span class="pill">Django</span>
+                        <span class="pill">React</span>
+                        <span class="pill">PostgreSQL</span>
+                        <span class="pill">Docker</span>
+                        <span class="pill">AWS</span>
+                        <span class="pill">Linux</span>
+                        <span class="pill">Kali</span>
+                        <span class="pill">Metasploit</span>
+                        <span class="pill">Nginx</span>
+                        <span class="pill">Redis</span>
+                        <span class="pill">Git</span>
+                        <span class="pill">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ CTA BANNER ════════════════════════════════════════════════════════ -->
+<section class="cta-banner" data-aos="fade-up">
+    <div class="container">
+        <div class="cta-inner">
+            <div class="cta-orb"></div>
+            <h2>Ready to Build Something<br>Extraordinary?</h2>
+            <p>Let's turn your idea into a production-ready system. Free consultation, no obligations.</p>
+            <a href="{{ url_for('contact') }}" class="btn-primary btn-large">
+                Get Free Consultation <i class="ti ti-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

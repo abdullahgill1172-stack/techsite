@@ -1,31 +1,151 @@
 {% extends "base.html" %}
-
-{% block title %}
-Portfolio
-{% endblock %}
+{% block title %}Portfolio{% endblock %}
 
 {% block content %}
 
-<h1>Our Projects</h1>
-
-<div class="portfolio-grid">
-
-    {% for project in projects %}
-
-    <div class="portfolio-card">
-
-        <img
-        src="{{ url_for('static', filename=project.image) }}"
-        alt="project image">
-
-        <h2>{{ project.title }}</h2>
-
-        <p>{{ project.description }}</p>
-
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-inner" data-aos="fade-up">
+            <span class="section-tag">Our Work</span>
+            <h1>Portfolio</h1>
+            <p>Real projects. Real results. Here's what we've built.</p>
+        </div>
     </div>
+</section>
 
-    {% endfor %}
+<section class="section">
+    <div class="container">
 
-</div>
+        <div class="portfolio-filter" data-aos="fade-up">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="security">Security</button>
+            <button class="filter-btn" data-filter="automation">Automation</button>
+        </div>
 
+        <div class="portfolio-grid">
+
+            <div class="portfolio-card" data-category="web" data-aos="fade-up" data-aos-delay="0">
+                <div class="portfolio-card-top web-grad">
+                    <i class="ti ti-layout-dashboard"></i>
+                </div>
+                <div class="portfolio-card-body">
+                    <span class="portfolio-tag">Web Development</span>
+                    <h3>E-Commerce Platform</h3>
+                    <p>Full-stack marketplace with payment gateway, inventory management, and real-time analytics dashboard.</p>
+                    <div class="portfolio-tech">
+                        <span>Django</span><span>React</span><span>PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="security" data-aos="fade-up" data-aos-delay="100">
+                <div class="portfolio-card-top sec-grad">
+                    <i class="ti ti-shield-check"></i>
+                </div>
+                <div class="portfolio-card-body">
+                    <span class="portfolio-tag">Cybersecurity</span>
+                    <h3>Network Security Audit</h3>
+                    <p>Comprehensive penetration test for a financial services firm. Discovered and patched 12 critical vulnerabilities.</p>
+                    <div class="portfolio-tech">
+                        <span>Kali Linux</span><span>Metasploit</span><span>Nmap</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="automation" data-aos="fade-up" data-aos-delay="200">
+                <div class="portfolio-card-top auto-grad">
+                    <i class="ti ti-robot"></i>
+                </div>
+                <div class="portfolio-card-body">
+                    <span class="portfolio-tag">Automation</span>
+                    <h3>Business Data Pipeline</h3>
+                    <p>Automated data collection, cleaning, and reporting system that saves 40+ hours of manual work per week.</p>
+                    <div class="portfolio-tech">
+                        <span>Python</span><span>Pandas</span><span>AWS Lambda</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="web" data-aos="fade-up" data-aos-delay="0">
+                <div class="portfolio-card-top web-grad">
+                    <i class="ti ti-world"></i>
+                </div>
+                <div class="portfolio-card-body">
+                    <span class="portfolio-tag">Web Development</span>
+                    <h3>SaaS Admin Dashboard</h3>
+                    <p>Multi-tenant admin panel with role-based access control, real-time notifications, and export tools.</p>
+                    <div class="portfolio-tech">
+                        <span>Flask</span><span>SQLAlchemy</span><span>Chart.js</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="security" data-aos="fade-up" data-aos-delay="100">
+                <div class="portfolio-card-top sec-grad">
+                    <i class="ti ti-lock"></i>
+                </div>
+                <div class="portfolio-card-body">
+                    <span class="portfolio-tag">Cybersecurity</span>
+                    <h3>Web App Hardening</h3>
+                    <p>Security assessment and remediation for an e-learning platform serving 10,000+ students.</p>
+                    <div class="portfolio-tech">
+                        <span>OWASP</span><span>Burp Suite</span><span>SSL/TLS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="automation" data-aos="fade-up" data-aos-delay="200">
+                <div class="portfolio-card-top auto-grad">
+                    <i class="ti ti-api"></i>
+                </div>
+                <div class="portfolio-card-body">
+                    <span class="portfolio-tag">Automation</span>
+                    <h3>API Integration Suite</h3>
+                    <p>Connected 8 third-party services (CRM, email, payments, analytics) into a unified business workflow.</p>
+                    <div class="portfolio-tech">
+                        <span>Python</span><span>REST APIs</span><span>Webhooks</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="cta-banner" data-aos="fade-up">
+    <div class="container">
+        <div class="cta-inner">
+            <div class="cta-orb"></div>
+            <h2>Your Project Could Be Next</h2>
+            <p>Let's build something great together.</p>
+            <a href="{{ url_for('contact') }}" class="btn-primary btn-large">
+                Start Today <i class="ti ti-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Portfolio filter
+    const btns  = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.portfolio-card');
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            cards.forEach(card => {
+                const show = filter === 'all' || card.dataset.category === filter;
+                card.style.opacity    = show ? '1' : '0.15';
+                card.style.transform  = show ? 'scale(1)' : 'scale(0.95)';
+                card.style.pointerEvents = show ? 'auto' : 'none';
+            });
+        });
+    });
+</script>
 {% endblock %}

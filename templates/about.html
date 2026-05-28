@@ -1,16 +1,138 @@
 {% extends "base.html" %}
-
-{% block title %}
-About
-{% endblock %}
+{% block title %}About{% endblock %}
 
 {% block content %}
 
-<h1>About Us</h1>
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-inner" data-aos="fade-up">
+            <span class="section-tag">Who We Are</span>
+            <h1>About HECG</h1>
+            <p>Tech experts building the future, one line of code at a time.</p>
+        </div>
+    </div>
+</section>
 
-<p>
-    We create professional websites and Python solutions
-    for businesses and individuals.
-</p>
+<!-- Our Story -->
+<section class="section">
+    <div class="container">
+        <div class="about-story-grid">
+            <div class="about-story-text" data-aos="fade-right">
+                <span class="section-tag">Our Story</span>
+                <h2>Built by Engineers,<br>For Engineers</h2>
+                <p>HECG Master Experts was founded with a simple mission: deliver enterprise-grade technology solutions without the enterprise price tag.</p>
+                <p>We believe every business deserves access to world-class web development, robust security, and intelligent automation. Whether you're a startup or an established enterprise, we treat every project with the same level of expertise and attention to detail.</p>
+                <p>Our team combines years of experience across multiple disciplines — from full-stack development to cybersecurity and cloud architecture — to deliver comprehensive solutions that scale with your business.</p>
+
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <span class="highlight-num">50+</span>
+                        <span class="highlight-label">Projects Delivered</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-num">98%</span>
+                        <span class="highlight-label">Client Retention</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-num">24/7</span>
+                        <span class="highlight-label">Support</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-story-visual" data-aos="fade-left">
+                <div class="about-card-stack">
+                    <div class="about-info-card">
+                        <i class="ti ti-code"></i>
+                        <div>
+                            <strong>Clean Code</strong>
+                            <span>Maintainable, documented, scalable</span>
+                        </div>
+                    </div>
+                    <div class="about-info-card">
+                        <i class="ti ti-shield-lock"></i>
+                        <div>
+                            <strong>Security First</strong>
+                            <span>OWASP guidelines, best practices</span>
+                        </div>
+                    </div>
+                    <div class="about-info-card">
+                        <i class="ti ti-clock"></i>
+                        <div>
+                            <strong>On-Time Delivery</strong>
+                            <span>We hit every deadline</span>
+                        </div>
+                    </div>
+                    <div class="about-info-card">
+                        <i class="ti ti-headset"></i>
+                        <div>
+                            <strong>Lifetime Support</strong>
+                            <span>We're here even after launch</span>
+                        </div>
+                    </div>
+                    <div class="about-info-card">
+                        <i class="ti ti-chart-line"></i>
+                        <div>
+                            <strong>Performance</strong>
+                            <span>Optimized for speed & scale</span>
+                        </div>
+                    </div>
+                    <div class="about-info-card">
+                        <i class="ti ti-users"></i>
+                        <div>
+                            <strong>Transparent</strong>
+                            <span>Regular updates, clear communication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values -->
+<section class="section about-values-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Our Values</span>
+            <h2>What Drives Us</h2>
+            <p>The principles that guide every project we deliver.</p>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="value-icon"><i class="ti ti-bulb"></i></div>
+                <h3>Innovation</h3>
+                <p>We don't just follow trends — we anticipate them. Every solution incorporates the latest technologies and best practices.</p>
+            </div>
+
+            <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-icon"><i class="ti ti-heart"></i></div>
+                <h3>Client Focus</h3>
+                <p>Your success is our success. We listen, adapt, and deliver solutions that exactly match your vision.</p>
+            </div>
+
+            <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-icon"><i class="ti ti-award"></i></div>
+                <h3>Excellence</h3>
+                <p>Good enough is never enough. We obsess over every detail until the job is done right.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" data-aos="fade-up">
+    <div class="container">
+        <div class="cta-inner">
+            <div class="cta-orb"></div>
+            <h2>Let's Build Something<br>Amazing Together</h2>
+            <p>Ready to work with a team that actually cares about your success?</p>
+            <a href="{{ url_for('contact') }}" class="btn-primary btn-large">
+                Get In Touch <i class="ti ti-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

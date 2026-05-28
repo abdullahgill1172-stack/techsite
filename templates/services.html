@@ -1,30 +1,121 @@
 {% extends "base.html" %}
-
-{% block title %}
-Services
-{% endblock %}
+{% block title %}Services{% endblock %}
 
 {% block content %}
 
-<h1>Our Services</h1>
-
-<div class="services">
-
-    <div class="card">
-        <h2>Website Development</h2>
-        <p>Modern responsive websites using Flask.</p>
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-inner" data-aos="fade-up">
+            <span class="section-tag">What We Offer</span>
+            <h1>Our Services</h1>
+            <p>Comprehensive technology solutions designed to accelerate your business.</p>
+        </div>
     </div>
+</section>
 
-    <div class="card">
-        <h2>Automation</h2>
-        <p>Python scripts to automate workflows.</p>
+<section class="section">
+    <div class="container">
+
+        <!-- Web Dev -->
+        <div class="service-detail" data-aos="fade-up">
+            <div class="service-detail-icon"><i class="ti ti-code"></i></div>
+            <div class="service-detail-body">
+                <h2>Web Development</h2>
+                <p>We architect and build fast, scalable, and secure web applications using modern stacks. From simple business websites to complex SaaS platforms — we do it all.</p>
+                <div class="service-features">
+                    <span><i class="ti ti-check"></i> Custom Flask / Django backends</span>
+                    <span><i class="ti ti-check"></i> React / modern frontend</span>
+                    <span><i class="ti ti-check"></i> REST APIs & integrations</span>
+                    <span><i class="ti ti-check"></i> Database design & optimization</span>
+                    <span><i class="ti ti-check"></i> Responsive, mobile-first UI</span>
+                    <span><i class="ti ti-check"></i> Admin dashboards & CMS</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cybersecurity -->
+        <div class="service-detail featured-detail" data-aos="fade-up">
+            <div class="service-detail-icon"><i class="ti ti-shield-lock"></i></div>
+            <div class="service-detail-body">
+                <h2>Cybersecurity</h2>
+                <p>Protect your business from modern threats. Our certified security experts conduct thorough assessments and implement robust defenses to keep your systems safe.</p>
+                <div class="service-features">
+                    <span><i class="ti ti-check"></i> Penetration testing</span>
+                    <span><i class="ti ti-check"></i> Vulnerability assessment</span>
+                    <span><i class="ti ti-check"></i> Network security audits</span>
+                    <span><i class="ti ti-check"></i> Security hardening</span>
+                    <span><i class="ti ti-check"></i> Incident response</span>
+                    <span><i class="ti ti-check"></i> Security training</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cloud -->
+        <div class="service-detail" data-aos="fade-up">
+            <div class="service-detail-icon"><i class="ti ti-cloud"></i></div>
+            <div class="service-detail-body">
+                <h2>Cloud & DevOps</h2>
+                <p>Modernize your infrastructure. We design cloud-native architectures and implement DevOps practices that give your team the velocity to ship faster and safer.</p>
+                <div class="service-features">
+                    <span><i class="ti ti-check"></i> AWS / cloud setup</span>
+                    <span><i class="ti ti-check"></i> Docker & Kubernetes</span>
+                    <span><i class="ti ti-check"></i> CI/CD pipelines</span>
+                    <span><i class="ti ti-check"></i> Server configuration</span>
+                    <span><i class="ti ti-check"></i> Monitoring & alerting</span>
+                    <span><i class="ti ti-check"></i> Backup & disaster recovery</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI & Automation -->
+        <div class="service-detail" data-aos="fade-up">
+            <div class="service-detail-icon"><i class="ti ti-robot"></i></div>
+            <div class="service-detail-body">
+                <h2>AI & Automation</h2>
+                <p>Let technology do the heavy lifting. We build intelligent systems that automate repetitive tasks, process data at scale, and integrate AI into your workflows.</p>
+                <div class="service-features">
+                    <span><i class="ti ti-check"></i> Python automation scripts</span>
+                    <span><i class="ti ti-check"></i> Web scraping & data pipelines</span>
+                    <span><i class="ti ti-check"></i> AI API integrations</span>
+                    <span><i class="ti ti-check"></i> Chatbot development</span>
+                    <span><i class="ti ti-check"></i> Workflow automation</span>
+                    <span><i class="ti ti-check"></i> Custom ML solutions</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- IT Consulting -->
+        <div class="service-detail" data-aos="fade-up">
+            <div class="service-detail-icon"><i class="ti ti-bulb"></i></div>
+            <div class="service-detail-body">
+                <h2>IT Consulting</h2>
+                <p>Strategic technology guidance from experts who've built real systems. We help you make the right technical decisions before you spend a single rupee on development.</p>
+                <div class="service-features">
+                    <span><i class="ti ti-check"></i> Tech stack selection</span>
+                    <span><i class="ti ti-check"></i> Architecture review</span>
+                    <span><i class="ti ti-check"></i> Code audits</span>
+                    <span><i class="ti ti-check"></i> Digital transformation roadmap</span>
+                    <span><i class="ti ti-check"></i> Team training</span>
+                    <span><i class="ti ti-check"></i> Project rescue</span>
+                </div>
+            </div>
+        </div>
+
     </div>
+</section>
 
-    <div class="card">
-        <h2>API Development</h2>
-        <p>Custom backend APIs and integrations.</p>
+<!-- CTA -->
+<section class="cta-banner" data-aos="fade-up">
+    <div class="container">
+        <div class="cta-inner">
+            <div class="cta-orb"></div>
+            <h2>Need a Custom Solution?</h2>
+            <p>Every business is different. Tell us your challenge and we'll craft the right approach.</p>
+            <a href="{{ url_for('contact') }}" class="btn-primary btn-large">
+                Discuss Your Project <i class="ti ti-arrow-right"></i>
+            </a>
+        </div>
     </div>
-
-</div>
+</section>
 
 {% endblock %}

@@ -1,46 +1,91 @@
 {% extends "base.html" %}
-
-{% block title %}
-Admin Dashboard
-{% endblock %}
+{% block title %}Admin Dashboard{% endblock %}
 
 {% block content %}
 
-<h1>Admin Dashboard</h1>
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-inner">
+            <span class="section-tag">Admin</span>
+            <h1>Dashboard</h1>
+            <p>{{ messages|length }} total message{{ 's' if messages|length != 1 else '' }} received.</p>
+        </div>
+    </div>
+</section>
 
+<section class="section">
+    <div class="container">
 
-<a href="{{ url_for('logout') }}" class="btn">
-    Logout
-</a>
+        <div class="admin-header">
+            <div class="admin-stat-cards">
+                <div class="admin-stat">
+                    <i class="ti ti-mail"></i>
+                    <div>
+                        <span class="admin-stat-num">{{ messages|length }}</span>
+                        <span>Total Messages</span>
+                    </div>
+                </div>
+                <div class="admin-stat">
+                    <i class="ti ti-calendar"></i>
+                    <div>
+                        <span class="admin-stat-num">
+                            {{ messages|selectattr('timestamp')|list|length }}
+                        </span>
+                        <span>This Month</span>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ url_for('logout') }}" class="btn-ghost-sm">
+                <i class="ti ti-logout"></i> Logout
+            </a>
+        </div>
 
+        {% if messages %}
+        <div class="messages-list">
+            {% for msg in messages %}
+            <div class="message-card" data-aos="fade-up">
+                <div class="message-card-header">
+                    <div class="msg-avatar">{{ msg.name[0]|upper }}</div>
+                    <div class="msg-meta">
+                        <strong>{{ msg.name }}</strong>
+                        <span>{{ msg.email }}</span>
+                    </div>
+                    <div class="msg-right">
+                        {% if msg.service %}
+                            <span class="msg-service-tag">{{ msg.service }}</span>
+                        {% endif %}
+                        <span class="msg-time">
+                            {{ msg.timestamp.strftime('%b %d, %Y — %I:%M %p') }}
+                        </span>
+                    </div>
+                </div>
+                <div class="message-card-body">
+                    <p>{{ msg.message }}</p>
+                </div>
+                <div class="message-card-footer">
+                    <a href="mailto:{{ msg.email }}" class="reply-btn">
+                        <i class="ti ti-mail-forward"></i> Reply
+                    </a>
+                    <form method="POST" action="{{ url_for('delete_message', msg_id=msg.id) }}"
+                          onsubmit="return confirm('Delete this message?');" style="display:inline;">
+                        <button type="submit" class="delete-btn">
+                            <i class="ti ti-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
-<table>
+        {% else %}
+        <div class="empty-state">
+            <i class="ti ti-inbox"></i>
+            <h3>No Messages Yet</h3>
+            <p>Contact form submissions will appear here.</p>
+        </div>
+        {% endif %}
 
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Message</th>
-    </tr>
-
-    {% for message in messages %}
-
-    <tr>
-
-        <td>{{ message.id }}</td>
-
-        <td>{{ message.name }}</td>
-
-        <td>{{ message.email }}</td>
-
-        <td>{{ message.message }}</td>
-
-    </tr>
-
-    {% endfor %}
-
-</table>
+    </div>
+</section>
 
 {% endblock %}
-
-

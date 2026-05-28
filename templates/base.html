@@ -1,71 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="stylesheet"
-href="{{ url_for('static', filename='style.css') }}">
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HECG Master Experts{% endblock %} | Tech Solutions</title>
 
-    <title>{% block title %}{% endblock %}</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
+    <!-- AOS Scroll Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
-    <nav>
+<!-- ── NAV ── -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="{{ url_for('index') }}" class="nav-logo">
+            <span class="logo-bracket">[</span>HECG<span class="logo-accent">.</span><span class="logo-bracket">]</span>
+        </a>
 
-        <div class="logo">
-            Abdullah Tech
-        </div>
-
-        <ul>
-            <li>
-    <a href="{{ url_for('portfolio') }}">
-        Portfolio
-    </a>
-</li>
-
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-
-            <li><a href="{{ url_for('about') }}">About</a></li>
-
-            <li><a href="{{ url_for('services') }}">Services</a></li>
-
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
-
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+            <li><a href="{{ url_for('services') }}" class="nav-link {% if request.endpoint == 'services' %}active{% endif %}">Services</a></li>
+            <li><a href="{{ url_for('portfolio') }}" class="nav-link {% if request.endpoint == 'portfolio' %}active{% endif %}">Portfolio</a></li>
+            <li><a href="{{ url_for('contact') }}" class="nav-cta {% if request.endpoint == 'contact' %}active{% endif %}">Contact Us</a></li>
         </ul>
 
-    </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
 
+<!-- ── FLASH MESSAGES ── -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-container">
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">
+            <i class="ti ti-{% if category == 'success' %}circle-check{% else %}alert-circle{% endif %}"></i>
+            {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 
-    <button id="darkModeToggle">
-    🌙 Dark Mode
-</button>
-    <div class="container">
+<!-- ── CONTENT ── -->
+{% block content %}{% endblock %}
 
-        {% block content %}
-        {% endblock %}
+<!-- ── FOOTER ── -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-bracket">[</span>HECG<span class="logo-accent">.</span><span class="logo-bracket">]</span>
+            </div>
+            <p>HECG Master Experts delivers cutting-edge technology solutions that power modern businesses.</p>
+            <div class="footer-socials">
+                <a href="#" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="#" aria-label="GitHub"><i class="ti ti-brand-github"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ti ti-brand-twitter"></i></a>
+                <a href="#" aria-label="Email"><i class="ti ti-mail"></i></a>
+            </div>
+        </div>
 
+        <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="{{ url_for('services') }}">Web Development</a></li>
+                <li><a href="{{ url_for('services') }}">Cybersecurity</a></li>
+                <li><a href="{{ url_for('services') }}">Cloud & DevOps</a></li>
+                <li><a href="{{ url_for('services') }}">IT Consulting</a></li>
+                <li><a href="{{ url_for('services') }}">Automation</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('login') }}">Admin</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Get in Touch</h4>
+            <ul class="footer-contact-list">
+                <li><i class="ti ti-mail"></i> info@hecgexperts.com</li>
+                <li><i class="ti ti-phone"></i> +92 300 0000000</li>
+                <li><i class="ti ti-map-pin"></i> Rawalpindi, Pakistan</li>
+            </ul>
+        </div>
     </div>
 
+    <div class="footer-bottom">
+        <p>&copy; 2024 HECG Master Experts. All rights reserved.</p>
+        <p>Built with Python & Flask</p>
+    </div>
+</footer>
 
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
+    // Init AOS
+    AOS.init({ duration: 700, once: true, offset: 80 });
 
-const button =
-document.getElementById("darkModeToggle");
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
 
-button.onclick = function(){
-
-    document.body.classList.toggle("dark-mode");
-};
-
+    // Mobile hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        hamburger.classList.toggle('active');
+    });
 </script>
 
+{% block scripts %}{% endblock %}
 </body>
 </html>
