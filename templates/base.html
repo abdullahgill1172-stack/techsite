@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}HECG Master Experts{% endblock %} | Tech Solutions</title>
 
+<!-- SEO Meta Tags -->
+<meta name="description" content="HECG Master Experts - Premium technology solutions including web development, cybersecurity, cloud infrastructure, and AI automation. Building future-ready digital experiences.">
+<meta name="keywords" content="web development, cybersecurity, cloud computing, AI automation, IT consulting, tech solutions, Python, Flask, React, software development">
+<meta name="author" content="HECG Master Experts">
+<meta name="robots" content="index, follow">
+<meta name="canonical" content="https://techsite-apx1.onrender.com/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://techsite-apx1.onrender.com/">
+<meta property="og:title" content="HECG Master Experts | Tech Solutions">
+<meta property="og:description" content="Premium technology solutions including web development, cybersecurity, cloud infrastructure, and AI automation.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://techsite-apx1.onrender.com/">
+<meta name="twitter:title" content="HECG Master Experts | Tech Solutions">
+<meta name="twitter:description" content="Premium technology solutions including web development, cybersecurity, cloud infrastructure, and AI automation.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -276,6 +299,27 @@ navLinks.querySelectorAll('a').forEach(link => {
         document.getElementById('scrollProgress').style.width = scrolled + '%';
     });
 </script>
+
+// 3D Card Tilt Effect
+document.querySelectorAll('.tilt-card, .service-card, .portfolio-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+});
 
 <!-- Particle Animation -->
 <script>

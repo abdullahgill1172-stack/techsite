@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techsite-apx1.onrender.com/sitemap.xml

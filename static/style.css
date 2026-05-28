@@ -1844,6 +1844,88 @@ a { text-decoration: none; color: inherit; }
         opacity: 1;
         visibility: visible;
     }
+}/* ═══ 3D CARD TILT ════════════════════════════════ */
+.tilt-card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.tilt-card-inner {
+    position: relative;
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.tilt-card:hover .tilt-card-inner {
+    transform: rotateX(5deg) rotateY(-5deg) translateZ(10px);
+}
+
+.tilt-card-front,
+.tilt-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.tilt-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Glow effect on hover */
+.tilt-glow {
+    position: relative;
+    overflow: hidden;
+}
+
+.tilt-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, var(--accent), transparent, var(--accent2));
+    border-radius: inherit;
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+}
+
+.tilt-glow:hover::before {
+    opacity: 0.5;
+}
+
+/* Service cards with tilt */
+.service-card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px) rotateX(2deg);
+}
+
+/* Portfolio cards with tilt */
+.portfolio-card {
+    perspective: 1000px;
+}
+
+.portfolio-card-inner {
+    transition: transform 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.portfolio-card:hover .portfolio-card-inner {
+    transform: rotateY(-10deg) rotateX(5deg);
+}
+
+/* Simple tilt on any element */
+.tilt-effect {
+    transition: transform 0.3s ease;
+}
+
+.tilt-effect:hover {
+    transform: perspective(1000px) rotateX(5deg) translateY(-5px);
 }
 
 
