@@ -16,8 +16,6 @@
 <section class="section">
     <div class="container">
         <div class="contact-grid">
-
-            <!-- Info Side -->
             <div class="contact-info" data-aos="fade-right">
                 <h3>Let's Talk</h3>
                 <p>Whether you need a new website, a security assessment, or a complete digital transformation — we're ready to help.</p>
@@ -41,7 +39,7 @@
                         <div class="contact-icon"><i class="ti ti-map-pin"></i></div>
                         <div>
                             <strong>Location</strong>
-                            <span>Rawalpindi, Punjab, Pakistan</span>
+                            <span>Rawalpindi, Pakistan</span>
                         </div>
                     </li>
                     <li>
@@ -54,7 +52,6 @@
                 </ul>
             </div>
 
-            <!-- Form Side -->
             <div class="contact-form-wrap" data-aos="fade-left">
                 <form method="POST" action="{{ url_for('contact') }}" class="contact-form" id="contactForm">
                     <div class="form-row">
@@ -86,14 +83,40 @@
                         <textarea id="message" name="message" placeholder="Describe your project or question..." rows="5" required></textarea>
                     </div>
 
-                    <button type="submit" class="btn-primary btn-full">
-                        Send Message <i class="ti ti-send"></i>
+                    <button type="submit" class="btn-primary btn-full" id="submitBtn">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-loading"><i class="ti ti-loader"></i></span>
+                        <span class="btn-success"><i class="ti ti-check"></i> Sent!</span>
                     </button>
                 </form>
             </div>
-
         </div>
     </div>
 </section>
 
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Add loading state
+        submitBtn.classList.add('loading');
+
+        // Simulate sending (Flask handles actual submission)
+        await new Promise(r => setTimeout(r, 1500));
+
+        submitBtn.classList.add('success');
+
+        // Reset after 3 seconds
+        setTimeout(() => {
+            submitBtn.classList.remove('loading', 'success');
+            form.reset();
+        }, 3000);
+    });
+</script>
 {% endblock %}
