@@ -127,7 +127,7 @@ button { cursor: pointer; font-family: inherit; }
     display: block;
 }
 .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(2) { opacity: 1; }
 .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ── FLASH MESSAGES ────────────────────────────────────────── */
@@ -1926,6 +1926,21 @@ a { text-decoration: none; color: inherit; }
 
 .tilt-effect:hover {
     transform: perspective(1000px) rotateX(5deg) translateY(-5px);
+}
+
+
+h1, p, a {
+  color: white;
+}
+
+.background {
+  position: fixed;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
 }
 
 
